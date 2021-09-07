@@ -4,10 +4,10 @@
       <div class="navbar-nav">
         <% if user_signed_in? %>
           <%# link_to "Edit Profile", edit_user_registration_path, class: "btn btn-gold btn-navs" %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-gold btn-navs" %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-gray btn-navs" %>
         <% else %>
-          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-gold btn-navs" %>
-          <%= link_to "Login", new_user_session_path, class: "btn btn-gold btn-navs" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-gray btn-navs" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-gray btn-navs" %>
         <% end %>
       </div>
     </div>
