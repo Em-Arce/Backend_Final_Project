@@ -4,8 +4,32 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :prefix %><br />
+    <%= f.select :prefix, User::TYPES %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",
+        placeholder: "Jane" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",
+        placeholder: "Doe" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :suffix %><br />
+    <%= f.text_field :suffix, autofocus: true, autocomplete: "suffix",
+        placeholder: "Jr., I, CBE etc" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",
+        placeholder: "example@example.com" %>
   </div>
 
   <div class="field">
