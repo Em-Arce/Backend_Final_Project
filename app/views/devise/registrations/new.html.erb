@@ -33,10 +33,14 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <%= f.label :password %><br />
+    <span class="italic">Requirements:<br />
+      Have at least 6 characters<br />
+      Have at least one number (0-9)<br />
+      Have at least one lowercase letter (a-z)<br />
+      Have at least one uppercase letter (A-Z)<br />
+      Have at least one symbol (?<>',?[]}{=-)(*&^%$#`~{}!)
+    </span><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
