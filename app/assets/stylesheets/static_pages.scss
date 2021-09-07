@@ -1,3 +1,76 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "bootstrap";
+
+html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    color: slategray;
+    height: 100vh;
+    background-image: url("/");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border: 1px black;
+
+}
+
+a {
+    text-decoration: none;
+    color: slategray;
+    &:hover {
+        color: #55529C;
+    }
+}
+
+.home-container {
+    position: absolute;
+    height: 300px;
+    width: 1000px;
+    top: 20%;
+    left: 10%;
+}
+
+.title {
+    font-size: 4rem;
+    margin: 20px 0;
+}
+
+.description {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.btn-home {
+    margin: 30px 0;
+}
+
+.btn-navs {
+    margin: 10px 10px;
+}
+
+.btn-gray {
+    /*background-color: #400080;*/
+    background-color: slategray;
+
+    color: #FFF;
+}
+
+.btn-margin {
+    margin: 10px 0;
+}
+
+.btn-wide {
+    width: 90%;
+}
