@@ -10,4 +10,8 @@ before_action :configure_devise_permitted_parameters, if: :devise_controller?
       :contact_number, :admin, :isvsp2022_registered])
   end
 
+  def after_sign_in_path_for(resource)
+    static_pages_welcome_path
+  end
+
 end
