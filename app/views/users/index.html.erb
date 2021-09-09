@@ -1,7 +1,6 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
 <div class="table-container p-4 bg-white">
     <h3 class="text-center">Users: <%= @users.count %></h3>
+    <p class="text-center"><%= link_to 'Download as Excel', users_path(format: :xlsx)%></p>
     <table class="table table-hover table-responsive-md text">
       <thead>
       <tr>
