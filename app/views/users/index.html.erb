@@ -1,0 +1,23 @@
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+<div class="table-container p-4 bg-white">
+    <h3 class="text-center">Users: <%= @users.count %></h3>
+    <table class="table table-hover table-responsive-md text">
+      <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="text"><%= user.first_name %></td>
+            <td class="text"><%= user.last_name %></td>
+            <td class="text"><%= user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
