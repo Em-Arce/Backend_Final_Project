@@ -17,4 +17,11 @@ class User < ApplicationRecord
   /x #End of string
   validates :password, format: PASSWORD_REQUIREMENTS
   validates :password_confirmation, format: PASSWORD_REQUIREMENTS
+
+  #callback for sending email notification
+  after_create :send_email
+
+  def send_email
+    UserMailer.welcome_email(self).deliver_later
+  end
 end

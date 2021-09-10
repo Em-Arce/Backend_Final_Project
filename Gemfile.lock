@@ -109,6 +109,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -210,6 +214,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    ruby_http_client (3.5.2)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -225,6 +230,8 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sendgrid-ruby (6.5.1)
+      ruby_http_client (~> 3.4)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -274,6 +281,7 @@ DEPENDENCIES
   caxlsx
   caxlsx_rails
   devise
+  dotenv-rails
   factory_bot_rails
   faker!
   jbuilder (~> 2.7)
@@ -285,6 +293,7 @@ DEPENDENCIES
   rails (~> 6.1.4)
   rspec-rails
   sass-rails (>= 6)
+  sendgrid-ruby
   spring
   turbolinks (~> 5)
   tzinfo-data
