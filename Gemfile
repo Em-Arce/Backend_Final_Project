@@ -32,6 +32,11 @@ gem 'bootstrap', '~> 5.0.1'
 #Convert HTML to XLSX
 gem 'caxlsx'
 gem 'caxlsx_rails'
+#Email API
+gem 'sendgrid-ruby'
+#Set ENV VAR
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
