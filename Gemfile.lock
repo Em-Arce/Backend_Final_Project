@@ -232,6 +232,8 @@ GEM
     semantic_range (3.0.0)
     sendgrid-ruby (6.5.1)
       ruby_http_client (~> 3.4)
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -294,6 +296,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (>= 6)
   sendgrid-ruby
+  shoulda-matchers
   spring
   turbolinks (~> 5)
   tzinfo-data
