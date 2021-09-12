@@ -123,6 +123,7 @@ GEM
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    hirb (0.7.3)
     htmlentities (4.3.4)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
@@ -242,6 +243,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    table_print (1.5.7)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -286,6 +288,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker!
+  hirb
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg
@@ -298,6 +301,7 @@ DEPENDENCIES
   sendgrid-ruby
   shoulda-matchers
   spring
+  table_print
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
