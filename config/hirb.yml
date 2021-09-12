@@ -1,0 +1,10 @@
+:output:
+  User:
+    :options:
+      :fields:
+        - id
+        - prefix
+        - first_name
+        - last_name
+        - email
+        - admin

@@ -36,6 +36,9 @@ gem 'caxlsx_rails'
 gem 'sendgrid-ruby'
 #Set ENV VAR
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
+# rail c in table format
+gem 'table_print'
+gem 'hirb'
 
 
 group :development, :test do
