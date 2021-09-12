@@ -1,26 +1,48 @@
-<h2>Log in</h2>
+<div class="d-flex justify-content-center">
+  <div class="card flex-column shadow p-3 mb-5 bg-body rounded" style="width: 27rem;">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <h2 class= "text-center">Login</h2>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="form-container">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="field form-group mb-6">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password",
+              class: "form-control" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field form-group mb-6">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions d-flex justify-content-center">
+          <%= f.submit "Login", class: "btn btn-gray btn-margin btn-wide" %>
+        </div>
+      <% end %>
+
+      <div class="actions d-flex justify-content-center" id="sign_up">
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to "Sign up", new_registration_path(resource_name),
+              class:"btn btn-gray btn-wide" %><br />
+          <% end %>
+      </div>
+
+      <div class="actions d-flex justify-content-center py-2" id="forgot">
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name),
+              class:"btn btn-gray btn-wide"%><br />
+          <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
