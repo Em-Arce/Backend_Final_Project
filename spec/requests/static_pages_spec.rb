@@ -1,18 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "StaticPages", type: :request do
-  describe "visit root_path (/static_pages/welcome)" do
-    it "returns http success" do
+  describe "GET /" do
+    it "should have status 200" do
       get "/"
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
 
   describe "GET /welcome" do
-    it "returns http success" do
+    it "should have status 200" do
       get "/static_pages/welcome"
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(200)
     end
   end
-
 end
