@@ -95,13 +95,6 @@ RSpec.describe "Log in a user", type: :feature do
 end
 
 RSpec.describe "Login form buttons check", type: :feature do
-    it 'for sign up' do
-        visit root_path
-        click_link 'Login'
-        click_link 'Sign up'
-        expect(current_path).to eq '/users/sign_up'
-    end
-
     it 'for forgot password' do
         visit root_path
         click_link 'Login'
