@@ -1,25 +1,41 @@
-<h2>Change your password</h2>
+<div class="d-flex justify-content-center">
+  <div class="card flex-column shadow p-3 mb-5 bg-body rounded" style="width: 27rem;">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+    <h2 class= "text-center">Change your password</h2>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <div class="form-container">
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :reset_password_token %>
+
+        <div class="field form-group mb-6">
+          <span class="italic small">Password Requirements:
+            <ul>
+              <li class="italic small">Have at least 6 characters</li>
+              <li class="italic small">Have at least one number: 0-9</li>
+              <li class="italic small">Have at least one lowercase letter: a-z</li>
+              <li class="italic small">Have at least one uppercase letter: A-Z</li>
+              <li class="italic small">Have at least one uppercase letter: A-Z</li>
+              <li class="italic small">Have at least one symbol: ?<>',?[]}{=-)(*&^%$#`~{}!</li>
+            </ul>
+          </span>
+          <%= f.label :password, "New password" %><br />
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password",
+              class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :password_confirmation, "Confirm new password" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",
+              class: "form-control" %>
+        </div>
+
+        <div class="actions actions d-flex justify-content-center pt-1">
+          <%= f.submit "Change my password", class: "btn btn-gray btn-margin btn-wide" %>
+        </div>
+      <% end %>
+      <%# removed the sign up and login links as redundant with the one found in header %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
