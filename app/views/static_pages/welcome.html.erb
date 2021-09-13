@@ -1,10 +1,12 @@
 <div class="table-container p-4 bg-white">
   <% if user_signed_in?  %>
     <h2 class="text-center">Welcome <%= current_user.prefix %> <%= current_user.last_name %></h2>
-    <%# link_to 'Register Now', user_registrations_path(current_user.id), class: "btn btn-gray" %>
+    <%# link_to 'Register as Conference Participant Now', user_participation_path(current_user.id), class: "btn btn-gray" %>
+    <% if current_user.admin? %>
+      <%= link_to "Users List", users_path, class: "btn btn-gray btn-navs" %>
+    <% end %>
   <% else %>
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-gray btn-navs" %>
-      <%= link_to "Login", new_user_session_path, class: "btn btn-gray btn-navs" %>
+      <%= link_to "Sign Up or Login ", root_path, class: "btn btn-gray btn-navs" %>
   <% end %>
 </div>
 
