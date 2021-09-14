@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
   TYPES = %w(Dr. Ms. Mr. Mrs. Prof. Sir Dame)
   validates :prefix, :inclusion => {:in => TYPES}
   validates :prefix,:first_name,:last_name, :email, :password, :password_confirmation,
@@ -29,4 +30,8 @@ class User < ApplicationRecord
   def send_email
     UserMailer.welcome_email(self).deliver_later
   end
+
+  has_many :participations, dependent: :destroy
+  has_many :conferences, through: :participations, dependent: :destroy
+  has_many :abstracts, through: :participations, dependent: :destroy
 end
