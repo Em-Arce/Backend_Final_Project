@@ -32,6 +32,19 @@ class User < ApplicationRecord
   end
 
   has_many :participations, dependent: :destroy
-  has_many :conferences, through: :participations, dependent: :destroy
+  #has_many :conferences, through: :participations, dependent: :destroy
   has_many :abstracts, through: :participations, dependent: :destroy
+
+  accepts_nested_attributes_for :abstracts
+
+  validates :prefix,:first_name,:last_name, :email, :position,
+            :university_institute_company, :department, :contact_number,
+            presence: true, on: :update
+
+  def abstracts_attributes=(abstracts_attributes)
+    abstracts_attributes.values.each do |abstract_attribute|
+      abstract = Abstract.find_or_create_by(abstract_attribute)
+      self.abstracts << abstract
+    end
+  end
 end
