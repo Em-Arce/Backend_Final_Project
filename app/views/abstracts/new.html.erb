@@ -1,0 +1,27 @@
+<div>
+  <h2>Abstract Submission</h2>
+  <div class="field form-group mb-6">
+    <%= f.fields_for :abstracts, @user.abstracts.build do |abstract_subform_fields| %>
+
+      <div class="field form-group mb-6">
+        <%= abstract_subform_fields.label :title %><br />
+        <%= abstract_subform_fields.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= abstract_subform_fields.label :main_author %><br />
+        <%= abstract_subform_fields.text_field :main_author, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= abstract_subform_fields.label :co_authors %><br />
+        <%= abstract_subform_fields.text_field :co_authors, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= abstract_subform_fields.label :body %><br />
+        <%= abstract_subform_fields.text_area :body, size: "25x10", class: "form-control" %>
+      </div>
+    <% end %>
+  </div>
+</div>
