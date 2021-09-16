@@ -1,0 +1,30 @@
+<div class="table-container p-4 bg-white">
+  <h1>Welcome <%= current_user.prefix %> <%= current_user.last_name %>!</h1>
+  <% if user_signed_in? %>
+    <h5 class="card-title task-title"></h5>
+    <p class="card-text">Prefix: <%= current_user.prefix %></p>
+    <p class="card-text">First Name: <%= current_user.first_name  %></p>
+    <p class="card-text">Last Name: <%= current_user.last_name %></p>
+    <p class="card-text">Suffix: <%= current_user.suffix %></p>
+    <p class="card-text">Position: <%= current_user.position %></p>
+    <p class="card-text">University, Institute or Company: <%= current_user.university_institute_company %></p>
+    <p class="card-text">Department: <%= current_user.department %></p>
+
+    <h3 class="text-center">My Abtracts: <%= @abstracts.count %></h3>
+    <table class="table table-hover table-responsive-md text">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @abstracts.each do |abstract| %>
+          <tr>
+            <td class="text"><%= abstract.title %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p><%# link_to 'Edit My Details', edit_user_path(@user.id), class: "btn btn-gray" %></p>
+  <% end %>
+</div>
