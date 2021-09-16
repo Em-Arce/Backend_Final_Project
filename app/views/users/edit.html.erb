@@ -1,0 +1,108 @@
+<div class="title">
+  <h2>ISVSP 2022 Participation</h2>
+</div>
+<%= form_with model: @user, local: true do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h5>The form contains <%= pluralize(@user.errors.count, "error") %></h5>
+      <ul>
+        <% @user.errors.full_messages.each do |m| %>
+          <li><%= m %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group mb-6">
+    <%= f.label :prefix %><br />
+    <%= f.select :prefix, User::TYPES, { }, { class: "form-select form-select-md mb-6" } %>
+  </div>
+
+  <div class="field form-group mb-6">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",
+        class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",
+        class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    <%= f.label :suffix %><br />
+    <%= f.text_field :suffix, autofocus: true, autocomplete: "suffix",
+        placeholder: "Jr., I, CBE etc", class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",
+        class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    <%= f.label :position %><br />
+    <%= f.text_field :position, autofocus: true, autocomplete: "position",
+        class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    University, Institute or Company Name
+    <%= f.text_field :university_institute_company, autofocus: true, autocomplete: "university_institute_company", class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    <%= f.label :department %><br />
+    <%= f.text_field :department, autofocus: true, autocomplete: "department", class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    Contact Number
+    <%= f.telephone_field :contact_number, autofocus: true, autocomplete: "contact_number", class: "form-control" %>
+  </div>
+
+  <div class="field form-group mb-6">
+    <%# f.fields_for :participations, @user.participations.build do |participation_subform_fields| %>
+
+      <div class="field form-group mb-6">
+        <%# participation_subform_fields.label :fee %><br />
+        <%# participation_subform_fields.text_field :fee, autofocus: true, autocomplete: "fee", class: "form-control" %>
+      </div>
+
+    <%# end %>
+  </div>
+
+  <div>
+    <h2>Abstract Submission</h2>
+    <div class="field form-group mb-6">
+      <%= f.fields_for :abstracts, @user.abstracts.build do |abstract_subform_fields| %>
+
+        <div class="field form-group mb-6">
+          <%= abstract_subform_fields.label :title %><br />
+          <%= abstract_subform_fields.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= abstract_subform_fields.label :main_author %><br />
+          <%= abstract_subform_fields.text_field :main_author, class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= abstract_subform_fields.label :co_authors %><br />
+          <%= abstract_subform_fields.text_field :co_authors, class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= abstract_subform_fields.label :body %><br />
+          <%= abstract_subform_fields.text_area :body, size: "25x10", class: "form-control" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-gray" %>
+  </div>
+<% end %>
