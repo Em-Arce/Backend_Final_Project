@@ -3,13 +3,13 @@ require "rails_helper"
 RSpec.describe "Log in a user", type: :feature do
   shared_examples "who is admin" do
     it "successfully" do
-      expect(page).to have_content("Signed in successfully")
+      expect(page).to have_content("Log in successful.")
     end
   end
 
   shared_examples "user with invalid data" do
     it "fails" do
-      expect(page).not_to have_content("Signed in successfully")
+      expect(page).not_to have_content("Log in successful.")
     end
   end
 
