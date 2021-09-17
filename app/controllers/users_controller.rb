@@ -48,6 +48,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:prefix, :prefix,:first_name,:last_name,
           :email, :position, :university_institute_company, :department,
           :contact_number, abstracts_attributes: [:title, :main_author,
-          :co_authors, :body]) #participations_attributes: [:fee]
+          :co_authors, { :co_authors1=>[] }, :body]) #participations_attributes: [:fee]
   end
 end
