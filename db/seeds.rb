@@ -7,19 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #CREATE INITIAL LIST OF USERS IN DEV/TEST ENV
-#require 'faker'
+require 'faker'
 
-#20.times do
-#  prefix = Faker::Name.prefix
-#  first_name = Faker::Name.first_name
-#  last_name = Faker::Name.last_name
-#  email = Faker::Internet.unique.email
-#  password = Faker::Internet.password(min_length: 6, max_length: 15,
-#    mix_case: true, special_characters: true)
-#  User.create(prefix: prefix, first_name: first_name, last_name: last_name,
-#    email:email, password: password, password_confirmation: password )
-#end
-
+20.times do
+  prefix = Faker::Name.prefix
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  email = Faker::Internet.unique.email
+  password = Faker::Internet.password(min_length: 6, max_length: 15,
+   mix_case: true, special_characters: true)
+  User.create!(prefix: prefix, first_name: first_name, last_name: last_name,
+   email:email, password: password, password_confirmation: password )
+end
 
 #Add admin to PROD ENV
 User.create!(prefix: "Ms.",
