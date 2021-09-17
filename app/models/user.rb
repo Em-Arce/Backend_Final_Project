@@ -47,4 +47,8 @@ class User < ApplicationRecord
       self.abstracts << abstract
     end
   end
+
+  def co_author_properties
+    "#{prefix} #{first_name} #{last_name} #{suffix}"
+  end
 end
