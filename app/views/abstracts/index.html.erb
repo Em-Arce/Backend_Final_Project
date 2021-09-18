@@ -1,0 +1,20 @@
+<div class="table-container p-4 bg-white">
+  <h3 class="text-center">All abstracts: <%= @abstracts.count %></h3>
+  <p class="text-center"><%= link_to 'Download as Excel for Reviewers', abstracts_path(format: :xlsx)%></p>
+  <table class="table table-hover table-responsive-md text">
+    <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Body Name</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @abstracts.each do |abstract| %>
+        <tr>
+          <td class="text"><%= abstract.title %></td>
+          <td class="text"><%= abstract.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
