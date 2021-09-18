@@ -1,26 +1,42 @@
 <div>
   <h2>Abstract Submission</h2>
   <div class="field form-group mb-6">
-    <%= f.fields_for :abstracts, @user.abstracts.build do |abstract_subform_fields| %>
+    <%= form_with model: [ @user, @abstract ], local: true do |f| %>
+      <% if @abstract.errors.any? %>
+        <div id="error_explanation">
+          <h5>The form contains <%= pluralize(@trade.errors.count, "error") %></h5>
+          <ul>
+            <% @trade.errors.full_messages.each do |m| %>
+              <li><%= m %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
       <div class="field form-group mb-6">
-        <%= abstract_subform_fields.label :title %><br />
-        <%= abstract_subform_fields.text_field :title, class: "form-control" %>
+        <%= f.label :title %><br />
+        <%= f.text_field :title, class: "form-control" %>
       </div>
 
       <div class="field form-group mb-6">
-        <%= abstract_subform_fields.label :main_author %><br />
-        <%= abstract_subform_fields.text_field :main_author, class: "form-control" %>
+        <%= f.label :main_author %><br />
+        <%= f.text_field :main_author, class: "form-control" %>
       </div>
 
       <div class="field form-group mb-6">
-        <%= abstract_subform_fields.label :co_authors %><br />
-        <%= abstract_subform_fields.text_field :co_authors, class: "form-control" %>
+        <%= f.label :co_authors %><br />
+        <%= f.select( :co_authors, User.all.collect {|user| [user.co_author_properties, user.id ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } ) %>
+
+        <%#abstract_subform_fields.select( :co_authors1, User.all.collect {|user| [user.co_author_properties, user.co_author_properties ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } )%>
       </div>
 
       <div class="field form-group mb-6">
-        <%= abstract_subform_fields.label :body %><br />
-        <%= abstract_subform_fields.text_area :body, size: "25x10", class: "form-control" %>
+        <%= f.label :body %><br />
+        <%= f.text_area :body, size: "25x10", class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit", class: "btn btn-gray" %>
       </div>
     <% end %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_112010) do
+ActiveRecord::Schema.define(version: 2021_09_17_104858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,12 @@ ActiveRecord::Schema.define(version: 2021_09_16_112010) do
   create_table "abstracts", force: :cascade do |t|
     t.string "title"
     t.string "main_author"
-    t.string "co_authors"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "co_authors", default: "{}"
+    t.text "co_authors1", default: [], array: true
+    t.index ["co_authors"], name: "index_abstracts_on_co_authors", using: :gin
   end
 
   create_table "conferences", force: :cascade do |t|

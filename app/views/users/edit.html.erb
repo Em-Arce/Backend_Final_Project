@@ -95,6 +95,11 @@
         </div>
 
         <div class="field form-group mb-6">
+          <%= abstract_subform_fields.label :co_authors1 %><br />
+          <%= abstract_subform_fields.select( :co_authors1, User.all.collect {|user| [user.co_author_properties, user.co_author_properties ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } )%>
+        </div>
+
+        <div class="field form-group mb-6">
           <%= abstract_subform_fields.label :body %><br />
           <%= abstract_subform_fields.text_area :body, size: "25x10", class: "form-control" %>
         </div>
