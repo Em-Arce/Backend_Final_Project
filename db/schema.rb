@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_17_104858) do
+ActiveRecord::Schema.define(version: 2021_09_18_034230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 2021_09_17_104858) do
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "co_authors", default: "{}"
     t.text "co_authors1", default: [], array: true
+    t.string "corresponding_author_email", default: "", null: false
+    t.jsonb "keywords"
+    t.jsonb "references"
     t.index ["co_authors"], name: "index_abstracts_on_co_authors", using: :gin
   end
 
