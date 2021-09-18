@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'static_pages/welcome'
   resources :abstracts, only: [:index, :destroy] #admin only
   resources :users do
-    resources :abstracts, only: [:new, :show, :create, :update]
+    resources :abstracts, only: [:new, :show, :create, :edit, :update]
   end
 end

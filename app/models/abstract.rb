@@ -26,4 +26,30 @@ class Abstract < ApplicationRecord
       puts "Please edit your abstract."
     end
   end
+
+  def retrieve_co_authors(user_ids)
+    @co_authors = []
+    user_ids.each do |user_id|
+      @co_authors << User.find(user_id)
+    end
+    #binding.pry
+    return @co_authors
+  end
+
+  def get_fullname(co_authors)
+    data = co_authors.pluck(:first_name,:last_name)
+    fullname_items = []
+    fullname = ""
+    first_name = ""
+    last_name = ""
+    data.each do |sub_array|
+      first_name = sub_array[0]
+      last_name  = sub_array[1].upcase
+      fullname = first_name.concat(" #{last_name}")
+      fullname_items << fullname
+    end
+    #binding.pry
+    return fullname_items
+  end
+
 end
