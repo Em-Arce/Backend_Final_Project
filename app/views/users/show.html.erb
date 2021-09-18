@@ -20,7 +20,7 @@
       <tbody>
         <% @abstracts.each do |abstract| %>
           <tr>
-            <td class="text"><%= abstract.title %></td>
+            <td class="text"><%= link_to abstract.title, user_abstract_path(@user, abstract.id) %></td>
           </tr>
         <% end %>
       </tbody>
