@@ -4,9 +4,9 @@
     <%= form_with model: [ @user, @abstract ], local: true do |f| %>
       <% if @abstract.errors.any? %>
         <div id="error_explanation">
-          <h5>The form contains <%= pluralize(@trade.errors.count, "error") %></h5>
+          <h5>The form contains <%= pluralize(@abstract.errors.count, "error") %></h5>
           <ul>
-            <% @trade.errors.full_messages.each do |m| %>
+            <% @abstract.errors.full_messages.each do |m| %>
               <li><%= m %></li>
             <% end %>
           </ul>
@@ -15,24 +15,43 @@
 
       <div class="field form-group mb-6">
         <%= f.label :title %><br />
-        <%= f.text_field :title, class: "form-control" %>
+        <%= f.text_field :title, autofocus: true, autocomplete: "title",
+            class: "form-control" %>
       </div>
 
       <div class="field form-group mb-6">
         <%= f.label :main_author %><br />
-        <%= f.text_field :main_author, class: "form-control" %>
+        <%= f.select( :main_author,  options_for_select(User.all.collect {|user| [user.co_author_properties, user.id ]}, :selected => User.ids), {},
+          { class: "form-select form-select-md mb-6" } ) %>
       </div>
 
       <div class="field form-group mb-6">
         <%= f.label :co_authors %><br />
         <%= f.select( :co_authors, User.all.collect {|user| [user.co_author_properties, user.id ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } ) %>
+      </div>
 
-        <%#abstract_subform_fields.select( :co_authors1, User.all.collect {|user| [user.co_author_properties, user.co_author_properties ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } )%>
+      <div class="field form-group mb-6">
+        Email:
+        <%= f.email_field :corresponding_author_email, autofocus: true,
+            autocomplete: "email", placeholder: "example@example.com",
+            class: "form-select form-select-md mb-6"  %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :keywords %><br />
+        <%= f.text_field :keywords, autofocus: true, autocomplete: "keywords",
+            placeholder: "Must have minimum of five and separated by comma.",
+            class: "form-control" %>
       </div>
 
       <div class="field form-group mb-6">
         <%= f.label :body %><br />
         <%= f.text_area :body, size: "25x10", class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :references %><br />
+        <%= f.text_area :references, size: "25x3", placeholder: "[1] K. Taaca and M. Vasquez Jr. Micropor. Mesopor. Mat. 2017, 241, 383-391.", class: "form-control" %>
       </div>
 
       <div class="actions">
