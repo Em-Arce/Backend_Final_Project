@@ -13,12 +13,14 @@ class AbstractsController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @user = User.find(params[:user_id])
+    #@user = current_user
     @abstract = @user.abstracts.build
   end
 
   def create
-    @user = current_user
+    @user = User.find(params[:user_id])
+    #@user = current_user
     @abstract = @user.abstracts.create(abstract_params)
 
     #clean up and do correct format for these fields
@@ -36,6 +38,21 @@ class AbstractsController < ApplicationController
         format.json { render json: @abstract.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show
+    @user = User.find(params[:user_id])
+    #@user = current_user
+    @abstract = @user.abstracts.find(params[:id])
+    #get the latest info about the co_authors from Users table
+    @co_authors = @abstract.retrieve_co_authors(@abstract.co_authors)
+    @co_authors_fullname = @abstract.get_fullname(@co_authors)
+  end
+
+  def edit
+    @user = User.find(params[:user_id])
+    #@user = current_user
+    @abstract = @user.abstracts.find(params[:id])
   end
 
   private
