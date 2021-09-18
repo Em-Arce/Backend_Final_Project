@@ -1,1 +1,28 @@
-This page is under construction (format according to the abstract template)
+<div class="table-container p-4 bg-white">
+  <% if user_signed_in? %>
+    <h2 class="text-center">Abstract Details</h2>
+
+    <h3 class="text-center"><%= @abstract.title.upcase %></h3>
+    <p class="text-center"><span class="underline"><%= @user.first_name %> <%= @user.last_name.upcase %></span>,
+      <% if @co_authors_fullname.length >= 2 %>
+        <%  last = @co_authors_fullname[-1]%>
+        <%  list = @co_authors_fullname[0..-2].join(", ")+ "," + " " + last%>
+      <%  elsif @co_authors_fullname.length == 1 %>
+        <% list = @co_authors_fullname.join() %>
+      <% end %>
+      <%= list %>
+    </p>
+
+    <p class="text-center"><%= @user.department %>, <%= @user.university_institute_company %>,
+       <% @co_authors.each do |co_author| %>
+          <%= co_author.department %>, <%= co_author.university_institute_company %>,
+       <% end %>
+    </p>
+
+    <p class="text-center"> <%= @abstract.body %> </p>
+    <p class="text-center"> <strong>Keywords:</strong> <%= @abstract.keywords.join(",") %></p>
+    <p class="text-center"> <%= @abstract.references.join(",") %> </p>
+
+    <p class="text-center"><%= link_to 'Edit', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %></p>
+  <% end %>
+</div>
