@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Abstracts") do |sheet|
+  @abstracts.each do |abstract|
+    sheet.add_row [abstract.title, abstract.body]
+  end
+end
