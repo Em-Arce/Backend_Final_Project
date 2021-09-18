@@ -28,6 +28,7 @@ class AbstractsController < ApplicationController
 
     respond_to do |format|
       if @abstract.save
+        AbstractMailer.abstract_submission(@user.id, @abstract).deliver_later
         format.html { redirect_to user_abstract_path(@user, @abstract), notice: "Abstract submission completed." }
         format.json { render :show, status: :created, location: @abstract }
       else

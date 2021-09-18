@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+
+  </head>
+  <body>
+    <h1>Abstract Submission</h1>
+    <p>
+      Hi <%= @user.prefix %> <%= @user.last_name %>,<br>
+      Your ISVSP 2022 account was used to submit an abstract entitled <%= @abstract.title %>.<br>
+      You may review the details <%= link_to 'here', user_abstract_url(@user, @abstract) %>
+    </p>
+  </body>
+</html>
