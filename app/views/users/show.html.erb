@@ -6,7 +6,7 @@
     <p class="card-text">First Name: <%= current_user.first_name  %></p>
     <p class="card-text">Last Name: <%= current_user.last_name %></p>
     <p class="card-text">Suffix: <%= current_user.suffix %></p>
-    <p class="card-text">Position: <%= current_user.position %></p>
+    <p class="card-text">Position: <%= current_user.position.humanize %></p>
     <p class="card-text">University, Institute or Company: <%= current_user.university_institute_company %></p>
     <p class="card-text">Department: <%= current_user.department %></p>
 
