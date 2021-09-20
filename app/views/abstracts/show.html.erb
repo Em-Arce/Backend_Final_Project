@@ -1,29 +1,36 @@
-<div class="table-container p-4 bg-white">
-  <% if user_signed_in? %>
-    <h2 class="text-center">Abstract Details</h2>
+<div class="home-container p-4 bg-white">
+  <div class="table-container p-4 bg-white">
+    <% if user_signed_in? %>
+      <h3 class="text-center"><%= @abstract.title.upcase %></h3>
+      <p class="text-center"><span class="underline"><%= @user.first_name %> <%= @user.last_name.upcase %></span>,
+        <% if @co_authors_fullname.length >= 2 %>
+          <%  last = @co_authors_fullname[-1]%>
+          <%  list = @co_authors_fullname[0..-2].join(", ")+ "," + " " + last%>
+        <%  elsif @co_authors_fullname.length == 1 %>
+          <% list = @co_authors_fullname.join() %>
+        <% end %>
+        <%= list %>
+      </p>
 
-    <h3 class="text-center"><%= @abstract.title.upcase %></h3>
-    <p class="text-center"><span class="underline"><%= @user.first_name %> <%= @user.last_name.upcase %></span>,
-      <% if @co_authors_fullname.length >= 2 %>
-        <%  last = @co_authors_fullname[-1]%>
-        <%  list = @co_authors_fullname[0..-2].join(", ")+ "," + " " + last%>
-      <%  elsif @co_authors_fullname.length == 1 %>
-        <% list = @co_authors_fullname.join() %>
-      <% end %>
-      <%= list %>
-    </p>
+      <div class="text-center italic small-text">
+        <%= @user.department %>, <%= @user.university_institute_company %>,
+          <%= @user.city %>, <%= @user.country %>; <br>
+        <span> <% if @co_authors_affiliation.length >= 2 %>
+              <%  last = @co_authors_affiliation[-1]%>
+              <%  list = @co_authors_affiliation[0..-2].join("; \r\n")+ "; \r\n" + " " + last%>
+            <%  elsif @co_authors_affiliation.length == 1 %>
+              <% list = @co_authors_affiliation.join("; \r\n") %>
+            <% end %>
+            <%= sanitize(list).gsub(/(\r)?\n/, "<br/>").html_safe %>
+       </span>
+     </div>
+     <br>
+      <p class="justify"> <%= @abstract.body %> <br></p>
+      <p class="text-center"> <strong>Keywords:</strong> <%= @abstract.keywords.join(", ") %></p>
+      <p class="text-center"> <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
+      </p>
 
-    <p class="text-center italic"><%= @user.department %>, <%= @user.university_institute_company %>,
-       <% @co_authors.each do |co_author| %>
-          <%= co_author.department %>, <%= co_author.university_institute_company %>,
-       <% end %>
-    </p>
-
-    <p class="text-center"> <%= @abstract.body %> </p>
-    <p class="text-center"> <strong>Keywords:</strong> <%= @abstract.keywords.join(", ") %></p>
-    <p class="text-center"> <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
-    </p>
-
-    <p class="text-center"><%= link_to 'Edit', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %></p>
-  <% end %>
+      <p class="text-center"><%= link_to 'Edit this abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %></p>
+    <% end %>
+  </div>
 </div>
