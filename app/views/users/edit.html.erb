@@ -44,8 +44,9 @@
 
   <div class="field form-group mb-6">
     <%= f.label :position %><br />
-    <%= f.text_field :position, autofocus: true, autocomplete: "position",
+    <%# f.text_field :position, autofocus: true, autocomplete: "position",
         class: "form-control" %>
+    <%= f.select :position, User.positions.map { |p| [p.last, p.last]}, {}, { class: "form-select form-select-md mb-6" } %>
   </div>
 
   <div class="field form-group mb-6">
@@ -63,18 +64,23 @@
     <%= f.telephone_field :contact_number, autofocus: true, autocomplete: "contact_number", class: "form-control" %>
   </div>
 
+   <h2>Register to ISVSP 2022</h2>
   <div class="field form-group mb-6">
-    <%# f.fields_for :participations, @user.participations.build do |participation_subform_fields| %>
-
+    <%= f.fields_for :participations, @user.participations.build do |participation_subform_fields| %>
       <div class="field form-group mb-6">
-        <%# participation_subform_fields.label :fee %><br />
-        <%# participation_subform_fields.text_field :fee, autofocus: true, autocomplete: "fee", class: "form-control" %>
+        <%# participation_subform_fields.label :kind %><br />
+        <%= participation_subform_fields.number_field :abstract_id, step: 1, value:@user.abstracts.first.id,  type: "hidden", class: "form-control" %>
+        <%# binding.pry %>
       </div>
 
-    <%# end %>
+      <div class="field form-group mb-6">
+        Register as <%# participation_subform_fields.label :kind %><br />
+        <%= participation_subform_fields.select :kind, Participation.kinds.map { |k| [k.last, k.last]}, {}, { class: "form-select form-select-md mb-6" } %>
+      </div>
+    <% end %>
   </div>
 
-  <div>
+  <!-- <div>
     <h2>Abstract Submission</h2>
     <div class="field form-group mb-6">
       <%= f.fields_for :abstracts, @user.abstracts.build do |abstract_subform_fields| %>
@@ -105,7 +111,7 @@
         </div>
       <% end %>
     </div>
-  </div>
+  </div> -->
 
   <div class="actions">
     <%= f.submit "Submit", class: "btn btn-gray" %>
