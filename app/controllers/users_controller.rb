@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @participation = @user.abstracts.first
+    #binding.pry
+    #puts "hello"
   end
 
   def update
@@ -47,7 +50,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:prefix, :prefix,:first_name,:last_name,
           :email, :position, :university_institute_company, :department,
-          :contact_number, abstracts_attributes: [:title, :main_author,
+          :contact_number, participations_attributes: [:kind, :abstract_id], abstracts_attributes: [:title, :main_author,
           :co_authors, { :co_authors1=>[] }, :body]) #participations_attributes: [:fee]
   end
 end

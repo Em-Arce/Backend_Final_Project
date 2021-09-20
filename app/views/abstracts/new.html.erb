@@ -21,7 +21,7 @@
 
       <div class="field form-group mb-6">
         <%= f.label :main_author %><br />
-        <%= f.select( :main_author,  options_for_select(User.all.collect {|user| [user.co_author_properties, user.id ]}, :selected => User.ids), {},
+        <%= f.select( :main_author,  options_for_select(User.all.collect {|user| [user.co_author_properties, user.id ]}, :selected =>params[:user_id]), {},
           { class: "form-select form-select-md mb-6" } ) %>
       </div>
 
