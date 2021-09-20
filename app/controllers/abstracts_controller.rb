@@ -31,7 +31,8 @@ class AbstractsController < ApplicationController
     respond_to do |format|
       if @abstract.save
         AbstractMailer.abstract_submission(@user.id, @abstract).deliver_later
-        format.html { redirect_to user_abstract_path(@user, @abstract), notice: "Abstract submission completed." }
+        format.html { redirect_to user_abstract_path(@user, @abstract),
+          notice: "Abstract submission completed. Review and edit before the deadline." }
         format.json { render :show, status: :created, location: @abstract }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +47,8 @@ class AbstractsController < ApplicationController
     @abstract = @user.abstracts.find(params[:id])
     #get the latest info about the co_authors from Users table
     @co_authors = @abstract.retrieve_co_authors(@abstract.co_authors)
-    @co_authors_fullname = @abstract.get_fullname(@co_authors)
+    @co_authors_fullname = @abstract.format_fullname(@co_authors)
+    @co_authors_affiliation = @abstract.format_affiliation(@co_authors)
   end
 
   def edit
