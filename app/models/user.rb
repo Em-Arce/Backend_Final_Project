@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  TYPES = %w(Dr. Ms. Mr. Mrs. Prof. Sir Dame)
+  TYPES = %w(Dr. Ms. Mr. Mrs. Prof. Sir Dame).freeze
   validates :prefix, :inclusion => {:in => TYPES}
   validates :prefix,:first_name,:last_name, :email, :password, :password_confirmation,
             presence: true, on: :create
@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   #check the password complexity on create
   validates :password, length: { in: Devise.password_length }, format: PASSWORD_FORMAT,
-             confirmation: true, on: :create
+            confirmation: true, on: :create
 
   validates :password_confirmation, format: PASSWORD_FORMAT, on: :create
 
