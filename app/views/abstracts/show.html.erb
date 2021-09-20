@@ -23,6 +23,8 @@
             <% end %>
             <%= sanitize(list).gsub(/(\r)?\n/, "<br/>").html_safe %>
        </span>
+       <br>
+       <%= @abstract.corresponding_author_email %>
      </div>
      <br>
       <p class="justify"> <%= @abstract.body %> <br></p>
@@ -30,7 +32,10 @@
       <p class="text-center"> <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
       </p>
 
-      <p class="text-center"><%= link_to 'Edit this abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %></p>
+      <p class="text-center"><%= link_to 'Edit this abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %>
+      </p>
+      <p class="text-center"><%= link_to 'My Profile', user_path(@user), class: "btn btn-gray" %>
+      </p>
     <% end %>
   </div>
 </div>
