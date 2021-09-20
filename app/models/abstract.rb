@@ -2,6 +2,7 @@ class Abstract < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :users, through: :participations, dependent: :destroy
 
+  #transform the input to desired format before save to db
   def format_params_field(name, params_fields, abstract)
     data =[]
     case name
@@ -27,6 +28,7 @@ class Abstract < ApplicationRecord
     end
   end
 
+  #get the co_authors without formatting
   def retrieve_co_authors(user_ids)
     @co_authors = []
     user_ids.each do |user_id|
@@ -36,7 +38,8 @@ class Abstract < ApplicationRecord
     return @co_authors
   end
 
-  def get_fullname(co_authors)
+  #format the co_authors name for view template
+  def format_fullname(co_authors)
     data = co_authors.pluck(:first_name,:last_name)
     fullname_items = []
     fullname = ""
@@ -52,4 +55,23 @@ class Abstract < ApplicationRecord
     return fullname_items
   end
 
+  def format_affiliation(co_authors)
+    data = co_authors.pluck(:department,:university_institute_company, :city, :country)
+    affiliation_items = []
+    department = ""
+    university_institute_company = ""
+    city = ""
+    country = ""
+    affiliation = ""
+    data.each do |sub_array|
+      department = sub_array[0]
+      university_institute_company = sub_array[1]
+      city = sub_array[2]
+      country = sub_array[3]
+      affiliation = "#{department}, #{university_institute_company}, #{city}, #{country}"
+      affiliation_items << affiliation
+    end
+    #binding.pry
+    return affiliation_items
+  end
 end

@@ -4,6 +4,7 @@
   <table class="table table-hover table-responsive-md text">
     <thead>
     <tr>
+      <th scope="col">Prefix</th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Email</th>
@@ -12,6 +13,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
+          <td class="text"><%= user.prefix %></td>
           <td class="text"><%= user.first_name %></td>
           <td class="text"><%= user.last_name %></td>
           <td class="text"><%= user.email %></td>

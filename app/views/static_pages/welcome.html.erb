@@ -8,5 +8,7 @@
   <% else %>
       <%= link_to "Sign Up or Login ", root_path, class: "btn btn-gray btn-navs" %>
   <% end %>
+
+  <%= link_to "Submit an Abstract", new_user_abstract_path(current_user), class: "btn btn-gray btn-navs" %>
 </div>
 
