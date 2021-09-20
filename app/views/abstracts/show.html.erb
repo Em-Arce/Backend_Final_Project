@@ -13,15 +13,16 @@
       <%= list %>
     </p>
 
-    <p class="text-center"><%= @user.department %>, <%= @user.university_institute_company %>,
+    <p class="text-center italic"><%= @user.department %>, <%= @user.university_institute_company %>,
        <% @co_authors.each do |co_author| %>
           <%= co_author.department %>, <%= co_author.university_institute_company %>,
        <% end %>
     </p>
 
     <p class="text-center"> <%= @abstract.body %> </p>
-    <p class="text-center"> <strong>Keywords:</strong> <%= @abstract.keywords.join(",") %></p>
-    <p class="text-center"> <%= @abstract.references.join(",") %> </p>
+    <p class="text-center"> <strong>Keywords:</strong> <%= @abstract.keywords.join(", ") %></p>
+    <p class="text-center"> <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
+    </p>
 
     <p class="text-center"><%= link_to 'Edit', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %></p>
   <% end %>
