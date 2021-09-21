@@ -14,18 +14,17 @@ class UsersController < ApplicationController
   end
 
   def show
+    #@participations = @user.participations.all
   end
 
   def edit
     @participation = @user.abstracts.first
-    #binding.pry
-    #puts "hello"
   end
 
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "#{@user.email} details successfully updated." }
+        format.html { redirect_to @user, notice: "#{@user.prefix} #{@user.last_name}'s' details successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
           format.html { render :edit }
@@ -50,7 +49,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:prefix, :prefix,:first_name,:last_name,
           :email, :position, :university_institute_company, :department,
-          :contact_number, participations_attributes: [:kind, :abstract_id], abstracts_attributes: [:title, :main_author,
+          :contact_number, participations_attributes: [:kind, :fee], abstracts_attributes: [:title, :main_author,
           :co_authors, { :co_authors1=>[] }, :body]) #participations_attributes: [:fee]
   end
 end
