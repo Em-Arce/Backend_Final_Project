@@ -10,7 +10,7 @@
     <p class="card-text">University, Institute or Company: <%= current_user.university_institute_company %></p>
     <p class="card-text">Department: <%= current_user.department %></p>
 
-    <h3 class="text-center">My Abtracts: <%= @abstracts.count %></h3>
+    <!-- <h3 class="text-center">My Abtracts: <%= @abstracts.count %></h3>
     <table class="table table-hover table-responsive-md text">
       <thead>
       <tr>
@@ -18,13 +18,13 @@
       </tr>
       </thead>
       <tbody>
-        <% @abstracts.each do |abstract| %>
+        <%# @abstracts.each do |abstract| %>
           <tr>
-            <td class="text"><%= link_to abstract.title, user_abstract_path(@user, abstract.id) %></td>
+            <td class="text"><%# link_to abstract.title, user_participation_abstract_path(@user, @participation.id,abstract.id) %></td>
           </tr>
-        <% end %>
+        <%# end %>
       </tbody>
-    </table>
+    </table>-->
     <p><%# link_to 'Edit My Details', edit_user_path(@user.id), class: "btn btn-gray" %></p>
   <% end %>
 </div>
