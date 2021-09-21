@@ -15,7 +15,8 @@
       <div class="text-center italic small-text">
         <%= @user.department %>, <%= @user.university_institute_company %>,
           <%= @user.city %>, <%= @user.country %>; <br>
-        <span> <% if @co_authors_affiliation.length >= 2 %>
+        <span>
+            <% if @co_authors_affiliation.length >= 2 %>
               <%  last = @co_authors_affiliation[-1]%>
               <%  list = @co_authors_affiliation[0..-2].join("; \r\n")+ "; \r\n" + " " + last%>
             <%  elsif @co_authors_affiliation.length == 1 %>
@@ -28,13 +29,24 @@
      </div>
      <br>
       <p class="justify"> <%= @abstract.body %> <br></p>
-      <p class="text-center"> <strong>Keywords:</strong> <%= @abstract.keywords.join(", ") %></p>
-      <p class="text-center"> <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
+      <p class="text-center"> <strong>Keywords:</strong>
+        <%if @abstract.keywords.is_a? Array  %>
+          <%= @abstract.keywords.join(", ") %>
+        <% elsif @abstract.keywords.is_a? String %>
+          <%= @abstract.keywords %>
+        <% end %>
+      </p>
+      <p class="text-center">
+        <% if @abstract.references.is_a? Array  %>
+        <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
+        <% elsif @abstract.references.is_a? String %>
+          <% sanitize(@abstract.references.split(",").join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
+        <% end %>
       </p>
 
-      <p class="text-center"><%= link_to 'Edit this abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %>
+      <p class="text-center"><%# link_to 'Edit this abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %>
       </p>
-      <p class="text-center"><%= link_to 'My Profile', user_path(@user), class: "btn btn-gray" %>
+      <p class="text-center"><%= link_to 'My Conference Details', user_participation_path(@user, @participation.id), class: "btn btn-gray" %>
       </p>
     <% end %>
   </div>
