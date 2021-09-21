@@ -1,0 +1,86 @@
+<h2 class="text-center">Register as conference participant</h2>
+
+<div>
+  <div class="field form-group mb-6">
+    <%= form_with model: [ @user, @participation ], local: true do |f| %>
+      <% if @participation.errors.any? %>
+        <div id="error_explanation">
+          <h5>The form contains <%= pluralize(@participation.errors.count, "error") %></h5>
+          <ul>
+            <% @participation.errors.full_messages.each do |m| %>
+              <li><%= m %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field form-group mb-6">
+        <%= f.label :prefix %><br />
+        <%= f.select :prefix, options_for_select(User::TYPES, :selected => @user.prefix), { }, { class: "form-select form-select-md mb-6" } %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",
+            value: @user.first_name, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",
+            value: @user.last_name, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :suffix %><br />
+        <%= f.text_field :suffix, autofocus: true, autocomplete: "suffix",
+            placeholder: "Jr., I, CBE etc", value: @user.suffix, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            value: @user.email, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :position %><br />
+        <%= f.select :position, options_for_select(User.positions.map { |p| [p.last, p.last]},
+            :selected => @user.position.humanize), {},
+            { class: "form-select form-select-md mb-6" } %>
+      </div>
+
+      <div class="field form-group mb-6">
+        University, Institute or Company Name
+        <%= f.text_field :university_institute_company, autofocus: true,
+          autocomplete: "university_institute_company",
+          value: @user.university_institute_company, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        <%= f.label :department %><br />
+        <%= f.text_field :department, autofocus: true, autocomplete: "department",
+          value: @user.department, class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        Contact Number
+        <%= f.telephone_field :contact_number, autofocus: true,
+            autocomplete: "contact_number", value: @user.contact_number,
+            class: "form-control" %>
+      </div>
+
+      <div class="field form-group mb-6">
+        Register as <br />
+        <%= f.select :kind, options_for_select(Participation.kinds.map { |k| [k.last, k.last]},
+        :selected => @participation.kind ), {}, { class: "form-select form-select-md mb-6" } %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit", class: "btn btn-gray" %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'My Profile', user_path(@user), class: "btn btn-gray" %>
+</div>
+

@@ -1,6 +1,8 @@
 <div class="table-container p-4 bg-white">
   <h3 class="text-center">All users: <%= @users.count %></h3>
-  <p class="text-center"><%= link_to 'Download as Excel', users_path(format: :xlsx)%></p>
+  <p class="text-center">
+    <%= link_to 'Download as Excel', users_path(format: :xlsx)%>
+  </p>
   <table class="table table-hover table-responsive-md text">
     <thead>
     <tr>
