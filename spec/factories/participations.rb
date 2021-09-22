@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :participation do
-    fee { "MyString" }
-    decimal { "MyString" }
+    fee { "Php 500" }
+    kind { "student_local" }
   end
 end
