@@ -37,7 +37,8 @@ class UsersController < ApplicationController
 
   def is_admin
     unless current_user.admin?
-      redirect_to static_pages_welcome_path, notice: "Unauthorized access."
+      redirect_to static_pages_welcome_path,
+      notice: "Unauthorized access."
     end
   end
 
@@ -49,7 +50,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:prefix, :prefix,:first_name,:last_name,
           :email, :position, :university_institute_company, :department,
-          :contact_number, participations_attributes: [:kind, :fee], abstracts_attributes: [:title, :main_author,
-          :co_authors, { :co_authors1=>[] }, :body]) #participations_attributes: [:fee]
+          :contact_number)
   end
 end
