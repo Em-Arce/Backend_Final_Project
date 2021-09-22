@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users do
       resources :abstracts, only: [:new, :create]
       resources :participations do
+        get 'profile'
         resources :abstracts, only: [:show, :edit, :update]
       end
   end
