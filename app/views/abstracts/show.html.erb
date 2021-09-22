@@ -46,7 +46,7 @@
 
       <p class="text-center"><%# link_to 'Edit this abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %>
       </p>
-      <p class="text-center"><%= link_to 'My Conference Details', user_participation_path(@user, @participation.id), class: "btn btn-gray" %>
+      <p class="text-center"><%= link_to 'My Conference Details', user_participation_profile_path(@user, @participation), class: "btn btn-gray" %>
       </p>
     <% end %>
   </div>
