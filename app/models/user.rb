@@ -52,7 +52,7 @@ class User < ApplicationRecord
     "#{prefix} #{first_name} #{last_name} #{suffix}"
   end
 
-  POSITIONS = { reseach_scientist: "Reseach Scientist",
+  POSITIONS = { research_scientist: "Research Scientist",
                 professor: "Professor",
                 phd: "PhD",
                 faculty: "Faculty",

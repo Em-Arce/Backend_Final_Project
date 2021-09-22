@@ -1,6 +1,6 @@
 class AbstractsController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_admin, only: %i[destroy]
+  before_action :is_admin, only: %i[index destroy]
 
   def index
     @abstracts = Abstract.all
@@ -77,7 +77,8 @@ class AbstractsController < ApplicationController
 
   def is_admin
     unless current_user.admin?
-      redirect_to static_pages_welcome_path, notice: "Unauthorized access."
+      redirect_to static_pages_welcome_path,
+      notice: "Unauthorized access."
     end
   end
 
