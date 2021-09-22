@@ -19,9 +19,19 @@ require 'faker'
    mix_case: true, special_characters: true)
   city = Faker::Address.city
   country = Faker::Address.country
+  position = [ "research_scientist"
+               "professor",
+               "phd",
+               "faculty",
+               "doctoral_student",
+               "masteral_student",
+               "college_student",
+               "highschool_student",
+               "other"
+  ].sample
   User.create!(prefix: prefix, first_name: first_name, last_name: last_name,
    email:email, password: password, password_confirmation: password, city: city,
-   country: country )
+   country: country, position: position )
 end
 
 #Add admin to PROD ENV
@@ -34,6 +44,7 @@ User.create!(prefix: "Ms.",
              admin: true,
              city: "Makati",
              country: "Philippines"
+             position: "faculty"
              )
 
 User.create!(prefix: "Ms.",
@@ -45,4 +56,5 @@ User.create!(prefix: "Ms.",
              admin: true,
              city: "Quezon",
              country: "Philippines"
+             position: "research_scientist"
              )
