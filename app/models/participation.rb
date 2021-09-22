@@ -36,8 +36,9 @@ class Participation < ApplicationRecord
     end
   end
 
-  before_create :set_kind
-  def set_kind
+  #if user has no existing abstracts, set participation kind to default
+  before_create :set_default_kind
+  def set_default_kind
     self.kind = "other"
     set_fee
   end
