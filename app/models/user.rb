@@ -35,19 +35,7 @@ class User < ApplicationRecord
   #has_many :conferences, through: :participations, dependent: :destroy
   has_many :abstracts, through: :participations, dependent: :destroy
 
-  accepts_nested_attributes_for :participations
-
-  validates :prefix,:first_name,:last_name, :email, :position,
-            :university_institute_company, :department, :contact_number,
-            presence: true, on: :update
-
-  def participations_attributes=(participations_attributes)
-    participations_attributes.values.each do |participation_attribute|
-      participation = Participation.find_or_create_by(participation_attribute)
-      self.participations << participation
-    end
-  end
-
+  #format for the select option in form
   def co_author_properties
     "#{prefix} #{first_name} #{last_name} #{suffix}"
   end
@@ -61,8 +49,8 @@ class User < ApplicationRecord
                 college_student: "College Student",
                 highschool_student: "High School Student",
                 other: "Other"
-  }
-  #this saves sa nil in db :((
+  }.freeze
+  #this saves as nil in db :((
   # POSITIONS = { reseach_scientist: 0,
   #               professor: 1,
   #                  phd: 2,
@@ -74,4 +62,8 @@ class User < ApplicationRecord
   #                  other: 8
   #                   }
   enum position: POSITIONS
+  #source for below: https://stackoverflow.com/questions/43840080/rails-enum-validation-failing
+  validates_inclusion_of :position, in: HashWithIndifferentAccess.new(POSITIONS).keys
+  validates :prefix,:first_name,:last_name, :email, :position,:university_institute_company, :department,
+    :contact_number, :city, :country,  presence: true, on: :update
 end
