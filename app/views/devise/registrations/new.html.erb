@@ -35,6 +35,12 @@
         </div>
 
         <div class="field form-group mb-6">
+          <%= f.label :position %><br />
+          <%= f.select :position, options_for_select(User.positions.map { |p| [p.last, p.last]}),
+            {}, { class: "form-select form-select-md mb-6" } %>
+        </div>
+
+        <div class="field form-group mb-6">
           <span class="italic small">Password Requirements:
             <ul>
               <li class="italic small">Have at least 6 characters</li>
