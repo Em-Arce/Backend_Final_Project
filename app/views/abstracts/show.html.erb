@@ -25,7 +25,7 @@
             <%= sanitize(list).gsub(/(\r)?\n/, "<br/>").html_safe %>
        </span>
        <br>
-       <%= @abstract.corresponding_author_email %>
+       Email: <%= @abstract.corresponding_author_email %>
      </div>
      <br>
       <p class="justify"> <%= @abstract.body %> <br></p>
