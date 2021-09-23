@@ -10,8 +10,8 @@ RSpec.describe "StaticPages", type: :request do
 
   describe "GET /welcome" do
     it "should have status 200" do
-      # user = create(:user)
-      # sign_in user
+      user = create(:user, position: "research_scientist")
+      sign_in user
       get static_pages_welcome_path
       expect(response).to have_http_status(200)
     end
