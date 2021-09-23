@@ -14,7 +14,7 @@ RSpec.describe "Log in a user", type: :feature do
   end
 
   context 'when user who is admin logs in with valid data' do
-    let(:create_user_admin) { create(:user, admin: 'true') }
+    let(:create_user_admin) { create(:user, admin: 'true', position: "research_scientist") }
 
     before do
       create_user_admin
@@ -30,7 +30,7 @@ RSpec.describe "Log in a user", type: :feature do
   end
 
   context 'when user who is not an admin logs in with valid data' do
-    let(:create_user) { create(:user) }
+    let(:create_user) { create(:user, position: "research_scientist") }
 
     before do
       create_user
@@ -46,7 +46,7 @@ RSpec.describe "Log in a user", type: :feature do
   end
 
   context 'when email field is blank' do
-    let(:create_user) { create(:user ) }
+    let(:create_user) { create(:user, position: "research_scientist" ) }
 
     before do
       create_user
@@ -62,7 +62,7 @@ RSpec.describe "Log in a user", type: :feature do
   end
 
   context 'when password field is blank' do
-    let(:create_user) { create(:user ) }
+    let(:create_user) { create(:user, position: "research_scientist" ) }
 
     before do
       create_user
@@ -78,7 +78,7 @@ RSpec.describe "Log in a user", type: :feature do
   end
 
   context 'when password and email fields are blank' do
-    let(:create_user) { create(:user ) }
+    let(:create_user) { create(:user, position: "research_scientist" ) }
 
     before do
       create_user
