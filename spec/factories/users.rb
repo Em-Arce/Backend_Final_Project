@@ -7,5 +7,9 @@ FactoryBot.define do
     password { "Pass_word0"}
     password_confirmation { "#{password}"}
     admin { 'false' }
+
+    after(:create) do |user|
+      user.abstracts << FactoryBot.create(:abstract)
+    end
   end
 end
