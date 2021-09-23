@@ -1,5 +1,6 @@
 class ParticipationsController < ApplicationController
   before_action :authenticate_user!
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def show
     @user =  User.find(params[:user_id])
@@ -23,8 +24,6 @@ class ParticipationsController < ApplicationController
     @participation = @user.participations.find(params[:id])
     @participations = @user.participations.all
 
-
-
     #for multiple abstracts hence multiple participations, the changes in
     #one participation is cascaded to all participations
     #@participation.set_kind(params[:user_id], params[:participation][:kind], params[:id])
@@ -43,10 +42,19 @@ class ParticipationsController < ApplicationController
     university_institute_company = params[:participation][:university_institute_company]
     department = params[:participation][:department]
     contact_number = params[:participation][:contact_number]
+    city = params[:participation][:city]
+    country = params[:participation][:country]
     @user.update!(prefix: prefix, first_name: first_name, last_name: last_name,
       suffix: suffix, email: email, position: position,
       university_institute_company: university_institute_company,
-      department: department, contact_number: contact_number)
+      department: department, contact_number: contact_number, city: city,
+      country: country)
+
+    # if @user.update
+    # else
+    #   rescue ActiveRecord::RecordInvalid => e
+    #     return e.record
+    # end
 
 
     respond_to do |format|
@@ -58,11 +66,17 @@ class ParticipationsController < ApplicationController
           format.html { render :edit }
           format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+      # rescue ActiveRecord::RecordInvalid => e
+      #   return e.record
     end
   end
 
   private
   def participation_params
     params.require(:participation).permit(:kind)
+  end
+
+  def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors }, status: :unprocessable_entity
   end
 end
