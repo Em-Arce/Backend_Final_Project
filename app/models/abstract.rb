@@ -74,4 +74,15 @@ class Abstract < ApplicationRecord
     #binding.pry
     return affiliation_items
   end
+
+  validates :title, :main_author, :co_authors, :corresponding_author_email, :keywords,
+            :references, presence: true, on: :create
+
+  validate :field_is_array, on: :create
+
+  def field_is_array
+    if !co_authors.is_a?(Array) || !keywords.is_a?(Array) || !references.is_a?(Array)
+      errors.add(:co_authors, "or keywords or references data type is invalid.")
+    end
+  end
 end
