@@ -8,8 +8,10 @@ FactoryBot.define do
     password_confirmation { "#{password}"}
     admin { 'false' }
 
-    after(:create) do |user|
-      user.abstracts << FactoryBot.create(:abstract)
-    end
+    #uncomment this to correct the error in login and request spec: ActiveRecord::RecordInvalid:
+      #Validation failed: Kind is not included in the list, Kind can't be blank, Fee can't be blank
+    # after(:create) do |user|
+    #   user.abstracts << FactoryBot.create(:abstract)
+    # end
   end
 end
