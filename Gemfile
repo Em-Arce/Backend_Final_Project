@@ -49,8 +49,8 @@ group :development, :test do
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'pry'
   gem 'rspec-rails'
-  gem 'rspec-collection_matchers'
   gem 'shoulda-matchers'
+  gem 'rspec-collection_matchers'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
