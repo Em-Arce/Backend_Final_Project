@@ -16,6 +16,8 @@ class Participation < ApplicationRecord
   }
 
   enum kind: KINDS
+  validates_inclusion_of :kind, in: HashWithIndifferentAccess.new(KINDS).keys
+  validates :kind, :fee, presence: true, on: :create
 
   before_update :set_fee
   def set_fee
