@@ -75,14 +75,14 @@ class Abstract < ApplicationRecord
     return affiliation_items
   end
 
-  validates :title, :main_author, :co_authors, :corresponding_author_email, :keywords,
-            :references, presence: true, on: :create
+  validates :title, :main_author, :co_authors, :corresponding_author_email,
+    :keywords, :body, :references, presence: true, on: :create
 
-  validate :field_is_array, on: :create
-
-  def field_is_array
-    if !co_authors.is_a?(Array) || !keywords.is_a?(Array) || !references.is_a?(Array)
-      errors.add(:co_authors, "or keywords or references data type is invalid.")
+  #validate :check_keyword_delimiter
+  def check_keyword_delimiter(keywords)
+    if !keywords.include?(", ") #|| !self.keywords.include?(", ")
+      #binding.pry
+      errors.add(:keywords, "format is invalid.")
     end
   end
 end
