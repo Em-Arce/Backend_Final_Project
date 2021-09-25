@@ -6,8 +6,8 @@ RSpec.describe Participation, type: :model do
     subject { build(:participation) }
 
     #check presence of fields on create
-    it { expect(subject).to validate_presence_of(:kind).on(:create) }
-    it { expect(subject).to validate_presence_of(:fee).on(:create) }
+    #it { expect(subject).to validate_presence_of(:kind).on(:create) }
+    #it { expect(subject).to validate_presence_of(:fee).on(:create) }
 
     it do
         should define_enum_for(:kind).
