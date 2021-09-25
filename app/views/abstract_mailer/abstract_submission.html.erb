@@ -8,7 +8,8 @@
     <p>
       Hi <%= @user.prefix %> <%= @user.last_name %>,<br>
       Your ISVSP 2022 account was used to submit an abstract entitled <%= @abstract.title %>.<br>
-      You may review the details <%= link_to 'here', user_abstract_url(@user, @abstract) %>
+      <!-- You may review the details <%# link_to 'here',
+        user_participation_abstract_url(@user, @participation, @abstract) %> -->
     </p>
   </body>
 </html>
