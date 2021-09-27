@@ -1,62 +1,64 @@
-<div>
-  <h2>Abstract Submission</h2>
-  <div class="field form-group mb-6">
-    <%= form_with model: [ @user, @abstract ], local: true do |f| %>
-      <% if @abstract.errors.any? %>
-        <div id="error_explanation">
-          <h5>The form contains <%= pluralize(@abstract.errors.count, "error") %></h5>
-          <ul>
-            <% @abstract.errors.full_messages.each do |m| %>
-              <li><%= m %></li>
-            <% end %>
-          </ul>
+<div class="d-flex justify-content-center">
+  <div class="card flex-column shadow p-3 mb-5 bg-body rounded" style="width: 40rem;">
+    <h2 class="text-center">Abstract Submission</h2>
+    <div class="form-container">
+      <%= form_with model: [ @user, @abstract ], local: true do |f| %>
+        <% if @abstract.errors.any? %>
+          <div id="error_explanation">
+            <h5>The form contains <%= pluralize(@abstract.errors.count, "error") %></h5>
+            <ul>
+              <% @abstract.errors.full_messages.each do |m| %>
+                <li><%= m %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field form-group mb-6">
+          <%= f.label :title %><br />
+          <%= f.text_field :title, autofocus: true, autocomplete: "title",
+              class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :main_author %><br />
+          <%= f.select( :main_author,  options_for_select(User.all.collect {|user| [user.get_fullname, user.id ]}, :selected =>params[:user_id]), {},
+            { class: "form-select form-select-md mb-6" } ) %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :co_authors %><br />
+          <%= f.select( :co_authors, User.all.collect {|user| [user.get_fullname, user.id ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } ) %>
+        </div>
+
+        <div class="field form-group mb-6">
+          Email:
+          <%= f.email_field :corresponding_author_email, autofocus: true,
+              autocomplete: "email", placeholder: "example@example.com",
+              class: "form-control"  %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :keywords %><br />
+          <%= f.text_field :keywords, autofocus: true, autocomplete: "keywords",
+              placeholder: "Must have maximum of five and separated by comma.",
+              class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :body %><br />
+          <%= f.text_area :body, size: "25x10", class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :references %><br />
+          <%= f.text_area :references, size: "25x3", placeholder: "[1] K. Taaca and M. Vasquez Jr. Micropor. Mesopor. Mat. 2017, 241, 383-391.", class: "form-control" %>
+        </div>
+
+        <div class="actions d-flex justify-content-center pt-1">
+          <%= f.submit "Submit", class: "btn btn-gray btn-margin btn-wide" %>
         </div>
       <% end %>
-
-      <div class="field form-group mb-6">
-        <%= f.label :title %><br />
-        <%= f.text_field :title, autofocus: true, autocomplete: "title",
-            class: "form-control" %>
-      </div>
-
-      <div class="field form-group mb-6">
-        <%= f.label :main_author %><br />
-        <%= f.select( :main_author,  options_for_select(User.all.collect {|user| [user.co_author_properties, user.id ]}, :selected =>params[:user_id]), {},
-          { class: "form-select form-select-md mb-6" } ) %>
-      </div>
-
-      <div class="field form-group mb-6">
-        <%= f.label :co_authors %><br />
-        <%= f.select( :co_authors, User.all.collect {|user| [user.co_author_properties, user.id ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } ) %>
-      </div>
-
-      <div class="field form-group mb-6">
-        Email:
-        <%= f.email_field :corresponding_author_email, autofocus: true,
-            autocomplete: "email", placeholder: "example@example.com",
-            class: "form-select form-select-md mb-6"  %>
-      </div>
-
-      <div class="field form-group mb-6">
-        <%= f.label :keywords %><br />
-        <%= f.text_field :keywords, autofocus: true, autocomplete: "keywords",
-            placeholder: "Must have minimum of five and separated by comma.",
-            class: "form-control" %>
-      </div>
-
-      <div class="field form-group mb-6">
-        <%= f.label :body %><br />
-        <%= f.text_area :body, size: "25x10", class: "form-control" %>
-      </div>
-
-      <div class="field form-group mb-6">
-        <%= f.label :references %><br />
-        <%= f.text_area :references, size: "25x3", placeholder: "[1] K. Taaca and M. Vasquez Jr. Micropor. Mesopor. Mat. 2017, 241, 383-391.", class: "form-control" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Submit", class: "btn btn-gray" %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>
