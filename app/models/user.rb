@@ -36,7 +36,7 @@ class User < ApplicationRecord
   has_many :abstracts, through: :participations, dependent: :destroy
 
   #format for the select option in form
-  def co_author_properties
+  def get_fullname
     "#{prefix} #{first_name} #{last_name} #{suffix}"
   end
 

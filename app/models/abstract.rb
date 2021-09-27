@@ -35,7 +35,7 @@ class Abstract < ApplicationRecord
       @co_authors << User.find(user_id)
     end
     #binding.pry
-    return @co_authors
+    return @co_authors  #array of user hashes
   end
 
   #format the co_authors name for view template
@@ -56,7 +56,7 @@ class Abstract < ApplicationRecord
   end
 
   def format_affiliation(co_authors)
-    data = co_authors.pluck(:department,:university_institute_company, :city, :country)
+    data = co_authors.pluck(:department, :university_institute_company, :city, :country)
     affiliation_items = []
     department = ""
     university_institute_company = ""
@@ -73,5 +73,16 @@ class Abstract < ApplicationRecord
     end
     #binding.pry
     return affiliation_items
+  end
+
+  validates :title, :main_author, :co_authors, :corresponding_author_email,
+    :keywords, :body, :references, presence: true, on: :create
+
+  #validate :check_keyword_delimiter
+  def check_keyword_delimiter(keywords)
+    if !keywords.include?(", ") #|| !self.keywords.include?(", ")
+      #binding.pry
+      errors.add(:keywords, "format is invalid.")
+    end
   end
 end

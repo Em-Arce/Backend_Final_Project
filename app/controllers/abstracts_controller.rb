@@ -23,6 +23,9 @@ class AbstractsController < ApplicationController
     #@user = current_user
     @abstract = @user.abstracts.create(abstract_params)
 
+    #check delimiters are valid
+    @abstract.check_keyword_delimiter(params[:abstract][:keywords])
+
     #clean up and do correct format for these fields
     @abstract.format_params_field(:co_authors, params[:abstract][:co_authors], @abstract)
     @abstract.format_params_field(:keywords, params[:abstract][:keywords], @abstract)

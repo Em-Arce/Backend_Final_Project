@@ -37,11 +37,14 @@ RSpec.describe "Users", type: :request do
     it "should have status 200" do
       user = create(:user, position: "research_scientist")
       #another way of building data for has many through before the factory bot had associations
-      #abstract = create(:abstract)
-      # participation = build(:participation)
-      # participation.update!(user_id: user.id, abstract_id: abstract.id)
-      abstract = user.abstracts.last
-      participation = user.participations.all.find_by(abstract_id: abstract.id)
+      abstract = create(:abstract)
+      participation = build(:participation)
+      participation.update!(user_id: user.id, abstract_id: abstract.id)
+
+      #uncomment below and use line 40 to correct error: ActiveRecord::RecordInvalid:
+            #Validation failed: Kind is not included in the list, Kind can't be blank, Fee can't be blank
+      #abstract = user.abstracts.last
+      #participation = user.participations.all.find_by(abstract_id: abstract.id)
 
       sign_in user
       get edit_user_participation_path(user.id, participation.id)
@@ -55,7 +58,6 @@ RSpec.describe "Users", type: :request do
       co_author1 = create(:user, position: "phd" )
       co_author2 = create(:user, position: "phd" )
       abstract = create(:abstract, co_authors: ["#{co_author1.id}","#{co_author2.id}"] )
-      #participation = user.abstracts.last
       participation = build(:participation)
       participation.update!(user_id: user.id, abstract_id: abstract.id)
       sign_in user

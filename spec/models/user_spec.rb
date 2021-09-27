@@ -43,10 +43,11 @@ RSpec.describe User, type: :model do
     it { expect(subject).to validate_presence_of(:country).on(:update) }
   end
 
-  describe '#co_author_properties' do
-    it 'returns value with valid data' do
+  describe '#get_fullname' do
+    it 'returns user full_name with prefix' do
       user = create(:user, position: "research_scientist")
-      expect(user.co_author_properties).to eq("#{user.prefix} #{user.first_name} #{user.last_name} #{user.suffix}")
+      #stubs allow an object to respond to method call with some value. http://rubyblog.pro/2017/10/rspec-difference-between-mocks-and-stubs
+      expect(user.get_fullname).to eq("#{user.prefix} #{user.first_name} #{user.last_name} #{user.suffix}")
     end
   end
 end
