@@ -24,7 +24,7 @@ class Abstract < ApplicationRecord
       end
       abstract.update!(keywords: data)
     else
-      puts "Please edit your abstract."
+      puts "Please edit abstract according to instructions."
     end
   end
 
