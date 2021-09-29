@@ -4,6 +4,7 @@
     <%# link_to 'Register as Conference Participant Now', user_participation_path(current_user.id), class: "btn btn-gray" %>
     <% if current_user.admin? %>
       <%= link_to "Users List", users_path, class: "btn btn-gray btn-navs" %>
+      <%= link_to "Abstracts List", abstracts_path, class: "btn btn-gray btn-navs" %>
     <% end %>
   <% else %>
       <%= link_to "Sign Up or Login ", root_path, class: "btn btn-gray btn-navs" %>

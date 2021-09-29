@@ -36,15 +36,15 @@
           <%= @abstract.keywords %>
         <% end %>
       </p>
-      <p class="text-center">
+      <p class="text-center"> <strong>References:</strong><br>
         <% if @abstract.references.is_a? Array  %>
-        <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
+          <%= sanitize(@abstract.references.join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
         <% elsif @abstract.references.is_a? String %>
-          <% sanitize(@abstract.references.split(",").join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
+          <%= sanitize(@abstract.references.split(",\r\n").join(",\r\n")).gsub(/(\r)?\n/, "<br/>").html_safe %>
         <% end %>
       </p>
 
-      <p class="text-center"><%# link_to 'Edit this abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %>
+      <p class="text-center"><%= link_to 'Edit This Abstract', edit_user_abstract_path(@user, @abstract), class: "btn btn-gray" %>
       </p>
       <p class="text-center"><%= link_to 'My Conference Details', user_participation_profile_path(@user, @participation), class: "btn btn-gray" %>
       </p>

@@ -64,13 +64,14 @@ class AbstractsController < ApplicationController
   def update
     @user = User.find(params[:user_id])
     @abstract = @user.abstracts.find(params[:id])
+
     respond_to do |format|
       if @abstract.update(abstract_params)
-        format.html { redirect_to user_path(@user),
+        format.html { redirect_to user_participation_abstract_path(@user, @user.participations.find_by(abstract_id: @abstract.id), @abstract),
           notice: "Your abstract details successfully updated." }
         format.json { render :show, status: :ok, location: @abstract }
       else
-          format.html { render :edit }
+          format.html { render :edit, status: :unprocessable_entity  }
           format.json { render json: @abstract.errors, status: :unprocessable_entity }
       end
     end
@@ -86,6 +87,6 @@ class AbstractsController < ApplicationController
   end
 
   def abstract_params
-    params.require(:abstract).permit(:title, :main_author, :co_authors, :corresponding_author_email, :keywords, :body, :references)
+    params.require(:abstract).permit(:title, :main_author, :co_authors, :corresponding_author_email, :body, :references, :keywords) #:references, :keywords,
   end
 end

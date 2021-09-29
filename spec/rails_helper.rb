@@ -86,4 +86,10 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
+
+  #login for feature tests source: https://stackoverflow.com/questions/48527129/how-to-login-in-feature-specs
+  RSpec.configure do |config|
+    config.include Warden::Test::Helpers
+    Warden.test_mode!
+  end
 end
