@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "static_pages/welcome"
   resources :abstracts, only: [:index] #admin only
   resources :users do
-      resources :abstracts, only: [:new, :create]
+      resources :abstracts, only: [:new, :create, :edit, :update]
       resources :participations do
         get 'profile'
         resources :abstracts, only: [:show]
