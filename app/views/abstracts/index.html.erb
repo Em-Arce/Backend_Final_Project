@@ -4,13 +4,13 @@
     <%= link_to 'Download as Excel for Reviewers', abstracts_path(format: :xlsx)%>
   </p>
   <table class="table table-hover table-responsive-md text">
-    <thead>
+    <thead class="text-gray">
     <tr>
       <th scope="col">Title</th>
       <th scope="col">Body Name</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="text-gray">
       <% @abstracts.each do |abstract| %>
         <tr>
           <td class="text"><%= abstract.title %></td>
