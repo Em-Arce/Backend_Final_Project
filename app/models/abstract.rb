@@ -14,9 +14,9 @@ class Abstract < ApplicationRecord
     when :references
       params_fields.split("\r\n").each do |params_field|
         data << params_field
-        #binding.pry
       end
       abstract.update!(references: data)
+      #binding.pry
     when :keywords
       params_fields.split(",").reject(&:empty?).each do |params_field|
         data << params_field
@@ -76,7 +76,7 @@ class Abstract < ApplicationRecord
   end
 
   validates :title, :main_author, :co_authors, :corresponding_author_email,
-    :keywords, :body, :references, presence: true, on: :create
+    :keywords, :body, :references, presence: true
 
   #validate :check_keyword_delimiter
   def check_keyword_delimiter(keywords)
