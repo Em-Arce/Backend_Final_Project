@@ -50,20 +50,13 @@ class ParticipationsController < ApplicationController
       department: department, contact_number: contact_number, city: city,
       country: country)
 
-    # if @user.update
-    # else
-    #   rescue ActiveRecord::RecordInvalid => e
-    #     return e.record
-    # end
-
-
     respond_to do |format|
       if @participation.update(participation_params)
         format.html { redirect_to user_participation_profile_path(@user, @participation),
           notice: "Your participation details successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
-          format.html { render :edit }
+          format.html { render :edit, status: :unprocessable_entity }
           format.json { render json: @user.errors, status: :unprocessable_entity }
       end
       # rescue ActiveRecord::RecordInvalid => e
