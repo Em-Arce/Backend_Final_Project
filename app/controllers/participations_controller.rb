@@ -70,6 +70,7 @@ class ParticipationsController < ApplicationController
   end
 
   def render_unprocessable_entity_response(invalid)
-    render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+    #render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+    redirect_to "/500.html" #404/422/500 -server error
   end
 end
