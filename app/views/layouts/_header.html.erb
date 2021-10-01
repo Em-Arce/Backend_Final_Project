@@ -4,6 +4,7 @@
       <div class="navbar-nav">
         <% if user_signed_in? %>
           <%# link_to "Edit Profile", edit_user_registration_path, class: "btn btn-gold btn-navs" %>
+          <%= link_to "Welcome Page", static_pages_welcome_path, class: "btn btn-gray btn-navs" %>
           <%= link_to "Submit Abstract", new_user_abstract_path(current_user), class: "btn btn-gray btn-navs" %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-gray btn-navs" %>
         <% else %>

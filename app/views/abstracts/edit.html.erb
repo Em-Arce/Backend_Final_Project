@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="card flex-column shadow p-3 mb-5 bg-body rounded" style="width: 40rem;">
     <h2 class="text-center">Edit Abstract</h2>
+    <p class="text-center italic"> Fill in all details unless tagged as optional and follow instructions to ensure correct format to be printed in Book of Abstracts.</p>
     <div class="form-container">
       <%= form_with model: [ @user, @abstract ], local: true do |f| %>
         <% if @abstract.errors.any? %>
@@ -15,43 +16,70 @@
         <% end %>
 
         <div class="field form-group mb-6">
-          <%= f.label :title %><br />
+          <%= f.label :title, class:"bold" %><br />
           <%= f.text_field :title, autofocus: true, autocomplete: "title",
               class: "form-control" %>
         </div>
 
         <div class="field form-group mb-6">
-          <%= f.label :main_author %><br />
+          <%= f.label :main_author, class:"bold" %><br />
           <%= f.select( :main_author,  options_for_select(User.all.collect {|user| [user.get_fullname, user.id ]}, :selected => params[:user_id]), {},
             { class: "form-select form-select-md mb-6" } ) %>
         </div>
 
         <div class="field form-group mb-6">
-          <%= f.label :co_authors %><br />
+          <%= f.label :co_authors, class:"bold" %><br />
+            <span class="italic small">
+              Ensure that all your co-authors are signed up to this web page, otherwise their names will not be among the options below.
+              <ul>
+                <li class="italic">For one co-author: Single left click one name from options.</li>
+                <li class="italic">For multiple co-authors:<br />
+                  1. Single left click one name from options. <br />
+                  2. Press CTRL , scroll to look for next name and left click when found. <br />
+                  3. Repeat step 2 for all co-authors. Chosen names should be blue-colored. </li>
+              </ul>
+            </span>
           <%= f.select( :co_authors, User.all.collect {|user| [user.get_fullname, user.id ]}, {}, { :multiple=> true, class: "form-select form-select-md mb-6" } ) %>
         </div>
 
         <div class="field form-group mb-6">
-          Email:
+          <span class="bold">Email:</span>
           <%= f.email_field :corresponding_author_email, autofocus: true,
               autocomplete: "email", placeholder: "example@example.com",
               class: "form-control"  %>
         </div>
 
         <div class="field form-group mb-6">
-          <%= f.label :keywords %><br />
+          <%= f.label :keywords, class:"bold" %><br />
+            <span class="italic small">
+                Must have maximum of five and separated by comma. Edit so that it looks exactly as below:<br />
+                "vacuum, plasma, nanomaterial"
+            </span>
           <%= f.text_field :keywords, autofocus: true, autocomplete: "keywords",
-              placeholder: "Must have maximum of five and separated by comma.",
+              placeholder: "vacuum, plasma, nanomaterial",
               class: "form-control" %>
         </div>
 
         <div class="field form-group mb-6">
-          <%= f.label :body %><br />
+          <%= f.label :body, class:"bold" %><br />
           <%= f.text_area :body, size: "25x10", class: "form-control" %>
         </div>
 
         <div class="field form-group mb-6">
-          <%= f.label :references %><br />
+          <%= f.label :references, class:"bold" %><br />
+            <span class="italic small">
+              Please edit and follow specific format before submit:
+              <ul>
+                <li class="italic ">For one reference type: <br />
+                  [1] S. Trolier-McKinstry, Springer, 2008, 39-56.</li>
+                <li class="italic ">For multiple references: <br />
+                  [1] S. Trolier-McKinstry, Springer, 2008, 39-56.<br />
+                  [2] K. Taaca and M. Vasquez Jr. Micropor. Mesopor. Mat. 2017, 241, 383-391.<br />
+                  1. Type the first reference. <br />
+                  2. Press ENTER and type the next reference. <br />
+                  3. Repeat step 2 for all references. <br /></li>
+              </ul>
+            </span>
           <%= f.text_area :references, size: "25x3", placeholder: "[1] K. Taaca and M. Vasquez Jr. Micropor. Mesopor. Mat. 2017, 241, 383-391.", class: "form-control" %>
         </div>
 
