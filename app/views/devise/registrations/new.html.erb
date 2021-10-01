@@ -23,7 +23,7 @@
         </div>
 
         <div class="field form-group mb-6">
-          <%= f.label :suffix %><br />
+          <%= f.label :suffix %> (Optional)<br />
           <%= f.text_field :suffix, autofocus: true, autocomplete: "suffix",
               placeholder: "Jr., I, CBE etc", class: "form-control" %>
         </div>
@@ -38,6 +38,40 @@
           <%= f.label :position %><br />
           <%= f.select :position, options_for_select(User.positions.map { |p| [p.last, p.last]}),
             {}, { class: "form-select form-select-md mb-6" } %>
+        </div>
+
+        <div class="field form-group mb-6">
+          University, Institute or Company Name
+          <%= f.text_field :university_institute_company, autofocus: true,
+            autocomplete: "university_institute_company",
+            value: @user.university_institute_company, class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :department %><br />
+          <%= f.text_field :department, autofocus: true, autocomplete: "department",
+            value: @user.department, class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :city %><br />
+          <%= f.text_field :city, autofocus: true,
+              autocomplete: "contact_number", value: @user.city,
+              class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          <%= f.label :country %><br />
+          <%= f.text_field :country, autofocus: true,
+              autocomplete: "contact_number", value: @user.country,
+              class: "form-control" %>
+        </div>
+
+        <div class="field form-group mb-6">
+          Contact Number
+          <%= f.telephone_field :contact_number, autofocus: true,
+              autocomplete: "contact_number", value: @user.contact_number,
+              class: "form-control" %>
         </div>
 
         <div class="field form-group mb-6">
@@ -64,6 +98,10 @@
 
         <div class="actions d-flex justify-content-center pt-1">
           <%= f.submit "Sign up", class: "btn btn-gray btn-margin btn-wide" %>
+        </div>
+
+        <div class="actions d-flex justify-content-center" id="login">
+          <%= render "devise/shared/links" %>
         </div>
       <% end %>
     </div>
