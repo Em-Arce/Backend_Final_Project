@@ -9,6 +9,7 @@
 #### Installation
 
 Fork this repo.
+![image](https://user-images.githubusercontent.com/78909218/135621191-eb3f1dbd-334b-482c-9a0f-27d200914e31.png)
 
 Then, clone your forked repo to your machine
 ```
@@ -21,6 +22,7 @@ Then, clone your forked repo to your machine
 ```
   $ bundle install
   $ rails db:setup
+  $ rails db:migrate
 ```
 
 #### Starting the application
