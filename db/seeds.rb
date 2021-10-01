@@ -8,41 +8,41 @@
 
 #CREATE INITIAL LIST OF USERS IN DEV/TEST ENV ONLY!!!!
 #when seed using faker, uncomment password validation in user.rb
-require 'faker'
+# require 'faker'
 
-20.times do
-  prefix = ["Dr.", "Ms.", "Mr.", "Mrs.", "Prof.", "Sir", "Dame"].sample
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = Faker::Internet.unique.email
-  password = "Pass_word0"
-  city = Faker::Address.city
-  country = Faker::Address.country
-  position = [ "research_scientist",
-               "professor",
-               "phd",
-               "faculty",
-               "doctoral_student",
-               "masteral_student",
-               "college_student",
-               "highschool_student",
-               "other"
-  ].sample
-  User.create!(prefix: prefix, first_name: first_name, last_name: last_name,
-   email:email, password: password, password_confirmation: password, city: city,
-   country: country, position: position )
-end
+# 20.times do
+#   prefix = ["Dr.", "Ms.", "Mr.", "Mrs.", "Prof.", "Sir", "Dame"].sample
+#   first_name = Faker::Name.first_name
+#   last_name = Faker::Name.last_name
+#   email = Faker::Internet.unique.email
+#   password = "Pass_word0"
+#   city = Faker::Address.city
+#   country = Faker::Address.country
+#   position = [ "research_scientist",
+#                "professor",
+#                "phd",
+#                "faculty",
+#                "doctoral_student",
+#                "masteral_student",
+#                "college_student",
+#                "highschool_student",
+#                "other"
+#   ].sample
+#   User.create!(prefix: prefix, first_name: first_name, last_name: last_name,
+#    email:email, password: password, password_confirmation: password, city: city,
+#    country: country, position: position )
+# end
 
 #Add admin to PROD ENV
 User.create!(prefix: "Ms.",
              first_name: "Kathrina Lois",
              last_name: "Taaca",
              email: "kathloistaaca@gmail.com",
-             password: "Pass_word0",
-             password_confirmation: "Pass_word0",
+             password: "Pass_w0rd",
+             password_confirmation: "Pass_w0rd",
              admin: true,
              city: "Makati",
-             country: "Philippines"
+             country: "Philippines",
              position: "faculty"
              )
 
@@ -50,10 +50,10 @@ User.create!(prefix: "Ms.",
              first_name: "Jane",
              last_name: "Doe",
              email: "railsnewappnotificationaug2021@gmail.com",
-             password: "Pass_word0",
-             password_confirmation: "Pass_word0",
+             password: "Pass_w0rd",
+             password_confirmation: "Pass_w0rd",
              admin: true,
              city: "Quezon",
-             country: "Philippines"
+             country: "Philippines",
              position: "research_scientist"
              )
