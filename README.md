@@ -1,24 +1,36 @@
-# README
+#### Version
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+  Ruby 2.7.3
+  Rails 6.1.4.1
+  NodeJS v12.22.1
+  Yarn 1.22.10
+```
+#### Installation
 
-Things you may want to cover:
+Fork this repo.
 
-* Ruby version
+Then, clone your forked repo to your machine
+```
+  $ git clone git@github.com:<username>/Backend_Final_Project.git <name of your app>
+  $ cd <name of your app>
+```
 
-* System dependencies
+#### Setup
 
-* Configuration
+```
+  $ bundle install
+  $ rails db:setup
+```
 
-* Database creation
+#### Starting the application
 
-* Database initialization
+```
+  $ rails server
+```
 
-* How to run the test suite
+#### How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+  $ rspec
+```
