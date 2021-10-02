@@ -94,4 +94,11 @@ Rails.application.configure do
     :authentication => :plain,
     :enable_starttls_auto => true
   }
+
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => '[Online Conference Exceptions]',
+    :sender_address => %{"notifier" <railsnewappnotificationaug2021@gmail.com>},
+    :exception_recipients => %w{saoirxechen8596@gmail.com}
+  }
 end
