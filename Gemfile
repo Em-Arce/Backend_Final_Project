@@ -39,6 +39,9 @@ gem 'dotenv-rails', :require => 'dotenv/rails-now'
 # rail c in table format
 gem 'table_print'
 gem 'hirb'
+#send exception via email
+gem 'exception_notification'
+gem 'rubocop-rails', require: false
 
 
 group :development, :test do
