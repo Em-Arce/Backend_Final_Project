@@ -100,8 +100,10 @@
           <%= f.submit "Sign up", class: "btn btn-gray btn-margin btn-wide" %>
         </div>
 
-        <div class="actions d-flex justify-content-center" id="login">
-          <%= render "devise/shared/links" %>
+        <div class="actions d-flex justify-content-center pt-4" id="login">
+          <%- if controller_name != 'sessions' %>
+            <%= link_to "Login", new_session_path(resource_name), class:"btn btn-gray btn-wide" %><br />
+          <% end %>
         </div>
       <% end %>
     </div>
